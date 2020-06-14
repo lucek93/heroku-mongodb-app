@@ -4,8 +4,9 @@ const mongoose = require("mongoose");
 const _ = require("lodash");
 // const date = require(__dirname + "/date.js");
 // import * as getDate from './date.js';
+const password = require(__dirname + "/password.js");
 
-const port = 3000;
+
 let app = express();
 
 app.set('view engine', 'ejs');
@@ -20,7 +21,7 @@ mongoose.connect("mongodb://localhost:27017/todolistDB", {
 
  */
 
-mongoose.connect("mongodb+srv://admin-jar:Test123@cluster0-mqksi.mongodb.net/todolistDB", {
+mongoose.connect(`mongodb+srv://admin-jar:${password}@cluster0-mqksi.mongodb.net/todolistDB`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -175,7 +176,14 @@ app.get("/about", (req, res) => {
 });
 
 
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 3000;
+}
+app.listen(port);
+
+
 
 app.listen(port, () => {
-    console.log("Server started on port " + port);
+    console.log("Server has started successfully");
 })
