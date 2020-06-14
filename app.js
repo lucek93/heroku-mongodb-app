@@ -21,15 +21,15 @@ mongoose.connect("mongodb://localhost:27017/todolistDB", {
 
  */
 
-/* mongoose.connect(`mongodb+srv://admin-jar:${password}@cluster0-mqksi.mongodb.net/todolistDB`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}) */
-
-mongoose.connect(`mongodb+srv://admin-jar:Test123@cluster0-mqksi.mongodb.net/todolistDB`, {
+mongoose.connect(`mongodb+srv://admin-jar:${password}@cluster0-mqksi.mongodb.net/todolistDB`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
+
+/* mongoose.connect(`mongodb+srv://admin-jar:Test123@cluster0-mqksi.mongodb.net/todolistDB`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}) */
 
 const itemsSchema = {
     name: String
