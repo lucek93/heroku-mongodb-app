@@ -1,1 +1,5 @@
-exports.password = "Test123";
+const getPassword = () => {
+    return "Test123";
+}
+
+exports.getPassword = getPassword;
