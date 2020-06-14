@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const _ = require("lodash");
 // const date = require(__dirname + "/date.js");
 // import * as getDate from './date.js';
-const password = require(__dirname + "/password.js");
+const passwords = require(__dirname + "/password.js");
 
 
 let app = express();
@@ -21,7 +21,7 @@ mongoose.connect("mongodb://localhost:27017/todolistDB", {
 
  */
 
-mongoose.connect(`mongodb+srv://admin-jar:${password}@cluster0-mqksi.mongodb.net/todolistDB`, {
+mongoose.connect(`mongodb+srv://admin-jar:${passwords.getPassword()}@cluster0-mqksi.mongodb.net/todolistDB`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
