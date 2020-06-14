@@ -2,8 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
-// const date = require(__dirname + "/date.js");
-// import * as getDate from './date.js';
 const passwords = require(__dirname + "/password.js");
 
 
@@ -18,18 +16,12 @@ mongoose.connect("mongodb://localhost:27017/todolistDB", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-
  */
 
 mongoose.connect(`mongodb+srv://admin-jar:${passwords.getPassword()}@cluster0-mqksi.mongodb.net/todolistDB`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-
-/* mongoose.connect(`mongodb+srv://admin-jar:Test123@cluster0-mqksi.mongodb.net/todolistDB`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}) */
 
 const itemsSchema = {
     name: String
@@ -38,7 +30,7 @@ const itemsSchema = {
 const Item = mongoose.model("Item", itemsSchema);
 
 const item1 = new Item({
-    name: "Welcome to your todolist"
+    name: "Welcome to your todolist!"
 });
 const item2 = new Item({
     name: "Hit the + button to add a new item."
@@ -87,10 +79,10 @@ app.post('/', (req, res) => {
     });
 
     if (listName === "Today") {
-        // shortcut of Item.insertOne()
-        item.save();
 
+        item.save();
         res.redirect("/");
+
     } else {
         List.findOne({
             name: listName
@@ -98,13 +90,9 @@ app.post('/', (req, res) => {
             foundList.items.push(item);
             foundList.save();
             res.redirect(`/${listName}`);
-        })
+        });
     }
-
-
-
-
-})
+});
 
 app.post("/delete", (req, res) => {
     const checkedItemId = req.body.checkbox;
@@ -132,7 +120,6 @@ app.post("/delete", (req, res) => {
             }
         });
     }
-
 
 });
 
