@@ -123,6 +123,10 @@ app.post("/delete", (req, res) => {
 
 });
 
+app.get("/add", (req, res) => {
+    res.render("add");
+})
+
 
 app.get("/:customListName", (req, res) => {
     const customListName = _.capitalize(req.params.customListName);
@@ -162,6 +166,8 @@ app.post("/work", (req, res) => {
     workItems.push(item);
     res.redirect('/work');
 })
+
+
 
 app.get("/about", (req, res) => {
     res.render("about");
